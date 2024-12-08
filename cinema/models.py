@@ -1,3 +1,5 @@
+from typing import Type
+
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.conf import settings
@@ -96,7 +98,7 @@ class Ticket(models.Model):
     def validate_row_and_seat(
             row: int, num_row: int,
             seat: int, num_seat: int,
-            error_to_raise
+            error_to_raise: Type[Exception]
     ) -> None:
         if not (1 <= row <= num_row):
             raise error_to_raise(
